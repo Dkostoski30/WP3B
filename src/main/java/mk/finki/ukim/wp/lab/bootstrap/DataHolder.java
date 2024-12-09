@@ -34,7 +34,7 @@ public class DataHolder implements CommandLineRunner{
     public void run(String... args) throws Exception {
         Random random = new Random();
 
-        // Generate random artists
+
         List<Artist> artists = List.of(
                 new Artist("John", "Lennon", "Member of The Beatles"),
                 new Artist("Paul", "McCartney", "Member of The Beatles"),
@@ -49,7 +49,7 @@ public class DataHolder implements CommandLineRunner{
         );
         artistRepository.saveAll(artists);
 
-        // Generate random albums
+
         List<Album> albums = List.of(
                 new Album("Abbey Road", "Rock", "1969"),
                 new Album("A Night at the Opera", "Rock", "1975"),
@@ -59,7 +59,6 @@ public class DataHolder implements CommandLineRunner{
         );
         albumRepository.saveAll(albums);
 
-        // Generate random songs
         List<Song> songs = List.of(
                 new Song("Come Together", "Rock", 1969, List.of(artists.get(0), artists.get(1))),
                 new Song("Bohemian Rhapsody", "Rock", 1975, List.of(artists.get(2))),
