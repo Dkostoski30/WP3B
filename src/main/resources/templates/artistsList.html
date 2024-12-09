@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Performer to Song</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0 auto;
+            width: 800px;
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #333;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        h2 {
+            color: #444;
+            margin-bottom: 15px;
+        }
+
+        form {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        aside {
+            background: #f1f1f1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        aside table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+
+        aside table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        aside div {
+            margin-bottom: 10px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            padding: 5px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Select the Artist to Add to the List of Performers</h1>
+</header>
+<form action="/artists" method="post">
+    <section>
+        <h2>Select Artist:</h2>
+        <div th:each="artist : ${artists}">
+            <input type="radio" name="artistId" th:value="${artist.getId()}" th:text="${artist.getFirstName()}"/>
+            <br/>
+        </div>
+        <br/>
+        <input type="hidden" name="trackId" th:value="${trackId}"/>
+        <input type="submit" value="Add Artist">
+    </section>
+    <aside>
+        <table>
+            <tr>
+                <td><b>Track ID</b></td>
+                <td th:text="${trackId}">Track ID</td>
+            </tr>
+        </table>
+        <div>Genre of song: <span th:text="${song.getGenre()}"></span> </div>
+        <ul>
+            <li th:each = "artist : ${song.getPerformers()} " th:text="${artist.getFirstName()}"></li>
+        </ul>
+    </aside>
+</form>
+</body>
+</html>
